@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/wpcampus/wpcampus-web-components/issues"
   },
-  "homepage": "https://github.com/wpcampus/wpcampus-web-components#readme"
+  "homepage": "https://github.com/wpcampus/wpcampus-web-components#readme",
+  "dependencies": {
+    "handlebars": "^4.5.3"
+  }
 }
