@@ -1,7 +1,7 @@
 {
-  "name": "wpcampus-web-components",
+  "name": "@wpcampus/wpcampus-web-components",
   "version": "1.0.0",
-  "description": "",
+  "description": "Web components used by the WPCampus organization.",
   "main": "index.js",
   "repository": {
     "type": "git",
