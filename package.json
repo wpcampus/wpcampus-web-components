@@ -1,0 +1,22 @@
+{
+  "name": "wpcampus-web-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wpcampus/wpcampus-web-components.git"
+  },
+  "keywords": [
+    "wpcampus"
+  ],
+  "author": "WPCampus",
+  "contributors": [
+    "Rachel Cherry"
+  ],
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/wpcampus/wpcampus-web-components/issues"
+  },
+  "homepage": "https://github.com/wpcampus/wpcampus-web-components#readme"
+}
