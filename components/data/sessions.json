@@ -1317,8 +1317,8 @@
     "slug": "composing-continuously",
     "permalink": "https://2019.wpcampus.org/schedule/composing-continuously/",
     "content": {
-      "raw": "When you have a handful of sites, updating plugins and core from the Web GUI, and managing your theme in GIT works. \u00a0But what happens when you have dozens if not hundreds of sites? How do you manage changes in an efficient, standard fashion, that minimizes downtime? Enter Composer, a package manager for PHP that allows you to manage a project\u2019s dependencies and requirements. Thinking of your site as a project with dependencies versus just a bunch of code opens up a whole new level of possibilities. Unfortunately, WordPress does not support composer out-of-the-box and takes some effort to get working properly. Join a panel of Higher Ed developers and architects as they discuss why they chose a composer-based management workflow, how they\u2019ve implemented this workflow on their campuses, and lessons-learned.",
-      "rendered": "<p>When you have a handful of sites, updating plugins and core from the Web GUI, and managing your theme in GIT works. \u00a0But what happens when you have dozens if not hundreds of sites? How do you manage changes in an efficient, standard fashion, that minimizes downtime? Enter Composer, a package manager for PHP that allows you to manage a project\u2019s dependencies and requirements. Thinking of your site as a project with dependencies versus just a bunch of code opens up a whole new level of possibilities. Unfortunately, WordPress does not support composer out-of-the-box and takes some effort to get working properly. Join a panel of Higher Ed developers and architects as they discuss why they chose a composer-based management workflow, how they\u2019ve implemented this workflow on their campuses, and lessons-learned.</p>\n"
+      "raw": "When you have a handful of sites, updating plugins and core from the Web GUI, and managing your theme in GIT works. \u00a0But what happens when you have dozens if not hundreds of sites? How do you manage changes in an efficient, standard fashion, that minimizes downtime?\r\n\r\nEnter Composer, a package manager for PHP that allows you to manage a project\u2019s dependencies and requirements.\r\n\r\nThinking of your site as a project with dependencies versus just a bunch of code opens up a whole new level of possibilities. Unfortunately, WordPress does not support composer out-of-the-box and takes some effort to get working properly. Join a panel of Higher Ed developers and architects as they discuss why they chose a composer-based management workflow, how they\u2019ve implemented this workflow on their campuses, and lessons-learned.",
+      "rendered": "<p>When you have a handful of sites, updating plugins and core from the Web GUI, and managing your theme in GIT works. \u00a0But what happens when you have dozens if not hundreds of sites? How do you manage changes in an efficient, standard fashion, that minimizes downtime?</p>\n<p>Enter Composer, a package manager for PHP that allows you to manage a project\u2019s dependencies and requirements.</p>\n<p>Thinking of your site as a project with dependencies versus just a bunch of code opens up a whole new level of possibilities. Unfortunately, WordPress does not support composer out-of-the-box and takes some effort to get working properly. Join a panel of Higher Ed developers and architects as they discuss why they chose a composer-based management workflow, how they\u2019ve implemented this workflow on their campuses, and lessons-learned.</p>\n"
     },
     "excerpt": {
       "raw": "When you have a handful of sites, updating plugins and core from the Web GUI, and managing your theme in GIT works. \u00a0But what happens when you have dozens if not hundreds of sites? How do you manage changes in an efficient, standard fashion, that minimizes downtime? Enter Composer, a package manager for PHP that&hellip;",
@@ -1338,8 +1338,8 @@
     "speakers": null,
     "subjects": null,
     "session_slides_url": "https://docs.google.com/presentation/d/1deR3N-Ub0xBBzPnVJ2Y0BrHUaM0QoE0YOr3CSIs8PdY/edit?usp=sharing",
-    "session_video": null,
-    "session_video_url": null,
+    "session_video": "37085",
+    "session_video_url": "https://www.youtube.com/watch?v=x-GXfKkHcVc",
     "best_session": false,
     "future": false
   },
@@ -3994,8 +3994,8 @@
     "speakers": null,
     "subjects": null,
     "session_slides_url": "https://smile.d.pr/ckHn1v",
-    "session_video": "37007",
-    "session_video_url": "https://www.youtube.com/watch?v=Fj6euco6WUo",
+    "session_video": "37049",
+    "session_video_url": "https://www.youtube.com/watch?v=SgjZkSxbEEc",
     "best_session": false,
     "future": false
   },
@@ -4338,8 +4338,8 @@
     "event_name": "WPCampus 2019",
     "event_slug": "wpcampus-2019",
     "event_permalink": "https://2019.wpcampus.org/",
-    "event_date": "2019-07-26 12:30:00",
-    "event_date_gmt": "2019-07-26 17:30:00",
+    "event_date": "2019-07-26 07:00:00",
+    "event_date_gmt": "2019-07-26 12:00:00",
     "format": "114",
     "format_name": "Lightning Talk",
     "format_slug": "lightning",
@@ -4773,8 +4773,8 @@
     "slug": "the-infamous-9x9x25-challenge",
     "permalink": "https://2019.wpcampus.org/schedule/the-infamous-9x9x25-challenge/",
     "content": {
-      "raw": "Getting faculty to share the good work they do is challenging. So we challenged them to share the work they do. The 9x9x25 Challenge began in 2013 at a small community college in Arizona. It has since been replicated over the years at several other institutions in various forms. This session tells the story of these challenges and how the challenge can be applied at any institution.\r\n\r\nIn brief, we used Wordpress and the FeedWordpress plugin to syndicate nine weeks of faculty posts into our website. The faculty created their own sites, and were asked to write 25 sentences a week in a post, for nine weeks. They were asked to write about teaching and learning. Each week we gave them a small token of appreciation for their work. Here are <a href=\"http://www.telswebletter.com/tag/final_reflection/\">some of the reflections faculty shared</a> about their experiences from Yavapai College. They all benefited from the experience.\r\n\r\nKey takeaways:\r\n<ul>\r\n \t<li>there are ways to get faculty to share ideas</li>\r\n \t<li>there is value in getting them to write about teaching and learning</li>\r\n \t<li>there are ways to reward faculty that cost very little</li>\r\n \t<li>Wordpress can help make it easier for them to share and become more digitally literate</li>\r\n</ul>",
-      "rendered": "<p>Getting faculty to share the good work they do is challenging. So we challenged them to share the work they do. The 9x9x25 Challenge began in 2013 at a small community college in Arizona. It has since been replicated over the years at several other institutions in various forms. This session tells the story of these challenges and how the challenge can be applied at any institution.</p>\n<p>In brief, we used Wordpress and the FeedWordpress plugin to syndicate nine weeks of faculty posts into our website. The faculty created their own sites, and were asked to write 25 sentences a week in a post, for nine weeks. They were asked to write about teaching and learning. Each week we gave them a small token of appreciation for their work. Here are <a href=\"http://www.telswebletter.com/tag/final_reflection/\">some of the reflections faculty shared</a> about their experiences from Yavapai College. They all benefited from the experience.</p>\n<p>Key takeaways:</p>\n<ul>\n<li>there are ways to get faculty to share ideas</li>\n<li>there is value in getting them to write about teaching and learning</li>\n<li>there are ways to reward faculty that cost very little</li>\n<li>Wordpress can help make it easier for them to share and become more digitally literate</li>\n</ul>\n"
+      "raw": "Getting faculty to share the good work they do is challenging. So we challenged them to share the work they do. The 9x9x25 Challenge began in 2013 at a small community college in Arizona. It has since been replicated over the years at several other institutions in various forms. This session tells the story of these challenges and how the challenge can be applied at any institution.\r\n\r\nIn brief, we used WordPress and the FeedWordPress plugin to syndicate nine weeks of faculty posts into our website. The faculty created their own sites, and were asked to write 25 sentences a week in a post, for nine weeks. They were asked to write about teaching and learning. Each week we gave them a small token of appreciation for their work. Here are <a href=\"http://www.telswebletter.com/tag/final_reflection/\">some of the reflections faculty shared</a> about their experiences from Yavapai College. They all benefited from the experience.\r\n\r\nKey takeaways:\r\n<ul>\r\n \t<li>there are ways to get faculty to share ideas</li>\r\n \t<li>there is value in getting them to write about teaching and learning</li>\r\n \t<li>there are ways to reward faculty that cost very little</li>\r\n \t<li>WordPress can help make it easier for them to share and become more digitally literate</li>\r\n</ul>",
+      "rendered": "<p>Getting faculty to share the good work they do is challenging. So we challenged them to share the work they do. The 9x9x25 Challenge began in 2013 at a small community college in Arizona. It has since been replicated over the years at several other institutions in various forms. This session tells the story of these challenges and how the challenge can be applied at any institution.</p>\n<p>In brief, we used WordPress and the FeedWordPress plugin to syndicate nine weeks of faculty posts into our website. The faculty created their own sites, and were asked to write 25 sentences a week in a post, for nine weeks. They were asked to write about teaching and learning. Each week we gave them a small token of appreciation for their work. Here are <a href=\"http://www.telswebletter.com/tag/final_reflection/\">some of the reflections faculty shared</a> about their experiences from Yavapai College. They all benefited from the experience.</p>\n<p>Key takeaways:</p>\n<ul>\n<li>there are ways to get faculty to share ideas</li>\n<li>there is value in getting them to write about teaching and learning</li>\n<li>there are ways to reward faculty that cost very little</li>\n<li>WordPress can help make it easier for them to share and become more digitally literate</li>\n</ul>\n"
     },
     "excerpt": {
       "raw": "Getting faculty to share the good work they do is challenging. So we challenged them to share the work they do. The 9x9x25 Challenge began in 2013 at a small community college in Arizona. It has since been replicated over the years at several other institutions in various forms. This session tells the story of&hellip;",
@@ -4794,8 +4794,8 @@
     "speakers": null,
     "subjects": null,
     "session_slides_url": "http://www.thewholeclassroom.com/wpcampus2019/",
-    "session_video": null,
-    "session_video_url": null,
+    "session_video": "37076",
+    "session_video_url": "https://www.youtube.com/watch?v=yuyBPpvIdsU",
     "best_session": false,
     "future": false
   },

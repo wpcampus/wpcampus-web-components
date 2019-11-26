@@ -1,6 +1,8 @@
 import WPCampusHTMLElement from "./default";
-import sessions from "./sessions.json";
 import Handlebars from "handlebars";
+
+// Placeholder until make http requests.
+import sessions from "./data/sessions";
 
 Handlebars.registerHelper("excited", function(aString) {
   //console.log(this);
