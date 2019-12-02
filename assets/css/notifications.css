@@ -1,0 +1,56 @@
+@import "variables.css";
+
+wpcampus-notifications {
+  display: block;
+  color: #222;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: left;
+}
+wpcampus-notifications * {
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-align: inherit;
+}
+wpcampus-notifications *:first-child {
+  margin-top: 0;
+}
+wpcampus-notifications *:last-child {
+  margin-bottom: 0;
+}
+wpcampus-notifications .wpc-notification {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 1rem var(--container-padding-side);
+}
+wpcampus-notifications .wpc-notification__message {
+  position: relative;
+  padding-left: 2.5rem;
+}
+wpcampus-notifications .wpc-notification__message:before {
+  content: "i";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #000;
+  opacity: 0.7;
+  border-radius: 2rem;
+  padding: 0.4rem 0.65rem;
+  color: var(--wpc-blue-light);
+  font-size: 1.25rem;
+  line-height: 0.7;
+  font-weight: bold;
+  vertical-align: middle;
+}
+wpcampus-notifications .wpc-notifications {
+  height: auto;
+  background: var(--wpc-blue-light);
+  opacity: 1;
+  transition: all 1s;
+}
+wpcampus-notifications .wpc-notifications.wpc-notifications--loading {
+  height: 0;
+  opacity: 0;
+}
