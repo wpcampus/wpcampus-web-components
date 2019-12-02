@@ -27,6 +27,18 @@ const loadingClass = "wpc-notifications--loading";
 
 const template = `<div class="wpc-notifications">
   <div class="wpc-notification">
+    <div class="wpc-notification__icon">
+      <?xml version="1.0" encoding="utf-8"?>
+      <svg aria-hidden="true" role="decoration" class="wpc-notification__icon__graphic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
+        <title></title>
+        <style type="text/css">.wpc-notification__icon__i--white{fill:#FFFFFF;}</style>
+        <circle class="wpc-notification__icon__bg" cx="15" cy="15" r="15" />
+        <circle class="wpc-notification__icon__i wpc-notification__icon__i--dot wpc-notification__icon__i--white" cx="15" cy="8.2" r="2.4" />
+        <g>
+          <path class="wpc-notification__icon__i wpc-notification__icon__i--body wpc-notification__icon__i--white" d="M12.6,23.1c0,0.3,0.3,0.6,0.6,0.6h3.6c0.3,0,0.6-0.3,0.6-0.6v-9.6c0-0.3-0.3-0.6-0.6-0.6h-3.6c-0.3,0-0.6,0.3-0.6,0.6V23.1z" />
+        </g>
+      </svg>
+    </div>
     <div class="wpc-notification__message"></div>
   </div>
 </div>`;
@@ -54,7 +66,11 @@ class WPCampusNotifications extends WPCampusHTMLElement {
       return true;
     }
     const difference = (Date.now() - notificationLocalTime) / 1000;
-    this.localStorageSeconds = this.checkPropertyNumber( this.localStorageSeconds, localStorageSecondsDefault, true );
+    this.localStorageSeconds = this.checkPropertyNumber(
+      this.localStorageSeconds,
+      localStorageSecondsDefault,
+      true
+    );
     return difference >= this.localStorageSeconds;
   }
   pauseTimer() {
@@ -72,7 +88,11 @@ class WPCampusNotifications extends WPCampusHTMLElement {
   }
   setUpdateTimer() {
     const that = this;
-    this.requestUpdateSeconds = this.checkPropertyNumber( this.requestUpdateSeconds, requestUpdateSecondsDefault, true );
+    this.requestUpdateSeconds = this.checkPropertyNumber(
+      this.requestUpdateSeconds,
+      requestUpdateSecondsDefault,
+      true
+    );
     setTimeout(function() {
       that.loadNotificationFromRequest();
     }, this.requestUpdateSeconds * 1000);
@@ -180,7 +200,11 @@ class WPCampusNotifications extends WPCampusHTMLElement {
 
     // Limit the number of requests we make. Can be reset by user activity.
     requestUpdateCount++;
-    this.requestUpdateMax = this.checkPropertyNumber( this.requestUpdateMax, requestUpdateMaxDefault, true );
+    this.requestUpdateMax = this.checkPropertyNumber(
+      this.requestUpdateMax,
+      requestUpdateMaxDefault,
+      true
+    );
     if (requestUpdateCount > this.requestUpdateMax) {
       that.pauseTimer();
       return;
