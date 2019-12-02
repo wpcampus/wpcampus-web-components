@@ -29,7 +29,7 @@ const template = `<div class="wpc-notifications">
   <div class="wpc-notification">
     <div class="wpc-notification__message"></div>
   </div>
-</aside>`;
+</div>`;
 
 class WPCampusNotifications extends WPCampusHTMLElement {
   constructor() {
