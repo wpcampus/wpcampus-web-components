@@ -2,6 +2,10 @@
 
 Web components used by the WPCampus organization.
 
+## Install
+
+`npm i @wpcampus/wpcampus-web-components`
+
 ## Our web components
 
 ### Notifications Bar
