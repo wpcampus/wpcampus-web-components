@@ -4,6 +4,7 @@ class WPCampusHTMLElement extends HTMLElement {
   constructor(componentID) {
     super();
     this.connected = false;
+    this.rendering = false;
     this.componentID = componentID;
   }
   addStyles(stylesheet) {
@@ -69,6 +70,14 @@ class WPCampusHTMLElement extends HTMLElement {
   }
   isConnected() {
     return this.connected;
+  }
+  // Pass true or false to set rendering state.
+  isRendering(state) {
+    if (true === state || false === state) {
+      this.rendering = state;
+      return state;
+    }
+    return this.rendering ? true === this.rendering : false;
   }
   connectedCallback() {
     this.connected = true;
