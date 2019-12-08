@@ -7,16 +7,20 @@ class WPCampusHTMLElement extends HTMLElement {
     this.rendering = false;
     this.componentID = componentID;
   }
-  addStyles(stylesheet) {
   initShadow(mode) {
     if (undefined === mode || !["open", "closed"].includes(mode)) {
       mode = "open";
     }
     this.shadow = this.attachShadow({ mode: mode });
   }
+  addStyles(stylesheet, toShadow) {
     const styles = document.createElement("style");
     styles.appendChild(document.createTextNode(stylesheet));
-    document.head.appendChild(styles);
+    if (true === toShadow && this.shadow) {
+      this.shadow.appendChild(styles);
+    } else {
+      document.head.appendChild(styles);
+    }
   }
   fadeIn(target, interval) {
     if (!target) {
