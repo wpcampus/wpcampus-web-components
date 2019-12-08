@@ -3,6 +3,7 @@ const defaultFadeInterval = 80;
 class WPCampusHTMLElement extends HTMLElement {
   constructor(componentID) {
     super();
+    this.connected = false;
     this.componentID = componentID;
   }
   addStyles(stylesheet) {
@@ -66,7 +67,12 @@ class WPCampusHTMLElement extends HTMLElement {
     }
     return value;
   }
-  connectedCallback() {}
+  isConnected() {
+    return this.connected;
+  }
+  connectedCallback() {
+    this.connected = true;
+  }
 }
 
 export default WPCampusHTMLElement;
