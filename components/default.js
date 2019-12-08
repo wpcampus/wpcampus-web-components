@@ -8,6 +8,12 @@ class WPCampusHTMLElement extends HTMLElement {
     this.componentID = componentID;
   }
   addStyles(stylesheet) {
+  initShadow(mode) {
+    if (undefined === mode || !["open", "closed"].includes(mode)) {
+      mode = "open";
+    }
+    this.shadow = this.attachShadow({ mode: mode });
+  }
     const styles = document.createElement("style");
     styles.appendChild(document.createTextNode(stylesheet));
     document.head.appendChild(styles);
