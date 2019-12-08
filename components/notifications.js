@@ -240,12 +240,19 @@ class WPCampusNotifications extends WPCampusHTMLElement {
       this.loadNotificationFromRequest();
     }
   }
-  connectedCallback() {
-    super.connectedCallback();
-    this.setAttribute("id", "wpc-notifications");
+  async render() {
+    if (!this.isConnected() || this.isRendering()) {
+      return;
+    }
+    this.isRendering(true);
     this.setAttribute("role", "complementary");
     this.setAttribute("aria-label", "Notifications");
-    this.loadNotification();
+    await this.loadNotification();
+    this.isRendering(false);
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.render();
   }
 }
 customElements.define("wpcampus-notifications", WPCampusNotifications);
