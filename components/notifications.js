@@ -147,7 +147,7 @@ class WPCampusNotifications extends WPCampusHTMLElement {
 
     return templateDiv.innerHTML;
   }
-  loadNotificationHTML(notification) {
+  loadNotificationHTML(notification, loading) {
     const that = this;
     return new Promise((resolve, reject) => {
       // Get new message.
@@ -158,7 +158,14 @@ class WPCampusNotifications extends WPCampusHTMLElement {
       }
 
       if (!that.innerHTML) {
-        that.innerHTML = that.getNotificationTemplate(newMessage);
+        that.innerHTML = that.getNotificationTemplate(newMessage, loading);
+        if (true === loading) {
+          setTimeout(function() {
+            that
+              .querySelector(notificationsSelector)
+              .classList.remove(loadingClass);
+          }, 200);
+        }
         return resolve(true);
       }
 
@@ -220,7 +227,7 @@ class WPCampusNotifications extends WPCampusHTMLElement {
 
           const notification = notificationResponse.shift();
 
-          that.loadNotificationHTML(notification);
+          that.loadNotificationHTML(notification, true);
 
           that.storeNotificationLocal(notification);
         } catch (error) {}
