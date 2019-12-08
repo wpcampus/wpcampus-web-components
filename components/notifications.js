@@ -98,12 +98,13 @@ class WPCampusNotifications extends WPCampusHTMLElement {
     }, this.requestUpdateSeconds * 1000);
   }
   requestNotification() {
-    if (!this.notificationsURL) {
-      this.notificationsURL = notificationsURLDefault;
+    const that = this;
+    if (!that.notificationsURL) {
+      that.notificationsURL = notificationsURLDefault;
     }
     return new Promise((resolve, reject) => {
       const request = new XMLHttpRequest();
-      request.open("GET", this.notificationsURL);
+      request.open("GET", that.notificationsURL);
       request.onload = () => resolve(request.responseText);
       request.onerror = () => reject(request);
       request.send();
