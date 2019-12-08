@@ -131,7 +131,7 @@ class WPCampusNotifications extends WPCampusHTMLElement {
       }
     });
   }
-  getNotificationHTML(notification) {
+  getNotificationTemplate(notification, loading) {
     const templateDiv = document.createElement("div");
     templateDiv.innerHTML = template;
 
@@ -139,55 +139,46 @@ class WPCampusNotifications extends WPCampusHTMLElement {
       templateDiv.querySelector(messageSelector).innerHTML = notification;
     }
 
-    templateDiv
-      .querySelector(notificationsSelector)
-      .classList.add(loadingClass);
+    if (true === loading) {
+      templateDiv
+        .querySelector(notificationsSelector)
+        .classList.add(loadingClass);
+    }
 
     return templateDiv.innerHTML;
   }
-  async loadNotificationHTML(notification) {
+  loadNotificationHTML(notification) {
     const that = this;
+    return new Promise((resolve, reject) => {
+      // Get new message.
+      const newMessage = notification ? notification.content.rendered : null;
 
-    // Get existing message.
-    var currentMessageDiv = that.querySelector(messageSelector);
-    const currentMessage = currentMessageDiv
-      ? currentMessageDiv.innerHTML
-      : null;
+      if (!newMessage) {
+        return resolve(false);
+      }
 
-    // Get new message.
-    const newMessage = notification ? notification.content.rendered : null;
+      if (!that.innerHTML) {
+        that.innerHTML = that.getNotificationTemplate(newMessage);
+        return resolve(true);
+      }
 
-    // Will be true if we had no message and we're adding one.
-    if (!currentMessage && newMessage) {
-      that.innerHTML = that.getNotificationHTML(newMessage);
-
-      setTimeout(function() {
-        that
-          .querySelector(notificationsSelector)
-          .classList.remove(loadingClass);
-      }, 200);
-
-      that.setUpdateTimer();
-
-      return;
-    }
-
-    // Will be true if we had a message and its being replaced.
-    if (currentMessage && newMessage !== currentMessage) {
+      // Get existing message.
       var messageDiv = that.querySelector(messageSelector);
+      const currentMessage = messageDiv ? messageDiv.innerHTML : null;
+
+      // Get out of here if no message or the message is the same.
+      if (!currentMessage || newMessage === currentMessage) {
+        return resolve(false);
+      }
 
       that.fadeOut(messageDiv).then(function() {
-        messageDiv.innerHTML = newMessage;
         messageDiv.setAttribute("role", "alert");
+        messageDiv.innerHTML = newMessage;
         that.fadeIn(messageDiv).then(function() {
-          that.setUpdateTimer();
+          return resolve(true);
         });
       });
-
-      return;
-    }
-
-    that.setUpdateTimer();
+    });
   }
   // Will return true if notification was loaded from local storage.
   async loadNotificationFromLocal() {
@@ -236,6 +227,9 @@ class WPCampusNotifications extends WPCampusHTMLElement {
       })
       .catch(function(error) {
         // @TODO what to do when the request doesn't work?
+      })
+      .finally(function() {
+        that.setUpdateTimer();
       });
   }
   async loadNotification() {
@@ -243,6 +237,7 @@ class WPCampusNotifications extends WPCampusHTMLElement {
     if (!loadedFromLocal) {
       await this.loadNotificationFromRequest();
     }
+    this.setUpdateTimer();
   }
   async render() {
     if (!this.isConnected() || this.isRendering()) {
