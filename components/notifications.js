@@ -114,19 +114,21 @@ class WPCampusNotifications extends WPCampusHTMLElement {
     this.setLocalStorageItem(localStorageKeyTime, Date.now());
   }
   getNotificationLocal() {
-    var notification = null;
-    try {
-      if (this.isNotificationLocalExpired()) {
-        throw "Notification has expired.";
+    const that = this;
+    return new Promise((resolve, reject) => {
+      try {
+        if (that.isNotificationLocalExpired()) {
+          resolve(null);
+        }
+        let notification = that.getLocalStorageItem(localStorageKey);
+        if (notification) {
+          notification = JSON.parse(notification);
+        }
+        resolve(notification);
+      } catch (error) {
+        reject(error);
       }
-      notification = this.getLocalStorageItem(localStorageKey);
-      if (notification) {
-        notification = JSON.parse(notification);
-      }
-    } catch (error) {
-      notification = null;
-    }
-    return notification;
+    });
   }
   getNotificationHTML(notification) {
     const templateDiv = document.createElement("div");
@@ -187,8 +189,8 @@ class WPCampusNotifications extends WPCampusHTMLElement {
     that.setUpdateTimer();
   }
   // Will return true if notification was loaded from local storage.
-  loadNotificationFromLocal() {
-    let notificationLocal = this.getNotificationLocal();
+  async loadNotificationFromLocal() {
+    let notificationLocal = await this.getNotificationLocal();
     if (notificationLocal) {
       this.loadNotificationHTML(notificationLocal);
       return true;
@@ -235,9 +237,10 @@ class WPCampusNotifications extends WPCampusHTMLElement {
         // @TODO what to do when the request doesn't work?
       });
   }
-  loadNotification() {
-    if (!this.loadNotificationFromLocal()) {
-      this.loadNotificationFromRequest();
+  async loadNotification() {
+    let loadedFromLocal = await this.loadNotificationFromLocal();
+    if (!loadedFromLocal) {
+      await this.loadNotificationFromRequest();
     }
   }
   async render() {
