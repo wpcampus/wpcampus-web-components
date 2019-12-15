@@ -1,5 +1,5 @@
-import WPCampusHTMLElement from "./default";
-import stylesheet from "../assets/css/notifications.css";
+const WPCampusHTMLElement = require("./default");
+const stylesheet = require("../assets/css/notifications.css");
 
 const localStorageKey = "wpcNotification";
 const localStorageKeyTime = "wpcNotificationTime";
@@ -263,4 +263,4 @@ class WPCampusNotifications extends WPCampusHTMLElement {
 }
 customElements.define("wpcampus-notifications", WPCampusNotifications);
 
-export default WPCampusNotifications;
+module.exports = WPCampusNotifications;

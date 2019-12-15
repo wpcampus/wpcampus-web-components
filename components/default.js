@@ -94,4 +94,4 @@ class WPCampusHTMLElement extends HTMLElement {
   }
 }
 
-export default WPCampusHTMLElement;
+module.exports = WPCampusHTMLElement;

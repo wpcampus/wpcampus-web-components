@@ -1,2 +1,2 @@
-import "./components/library";
-import "./components/notifications";
+require("./components/library");
+require("./components/notifications");

@@ -1,8 +1,8 @@
-import WPCampusHTMLElement from "./default";
-import Handlebars from "handlebars";
+const WPCampusHTMLElement = require("./default");
+const Handlebars = require("handlebars");
 
 // Placeholder until make http requests.
-import sessions from "./data/sessions";
+const sessions = require("./data/sessions.json");
 
 Handlebars.registerHelper("excited", function(aString) {
   //console.log(this);
@@ -32,4 +32,4 @@ class WPCampusLibrary extends WPCampusHTMLElement {
 }
 customElements.define("wpcampus-library", WPCampusLibrary);
 
-export default WPCampusLibrary;
+module.exports = WPCampusLibrary;
