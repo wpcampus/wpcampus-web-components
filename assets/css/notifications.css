@@ -1,5 +1,4 @@
 wpcampus-notifications {
-  --notifications-bg-color: #e4eaf4;
   display: block;
   color: #222;
   font-size: 0.95rem;
@@ -40,7 +39,6 @@ wpcampus-notifications .wpc-notification .wpc-notification__message {
 }
 wpcampus-notifications .wpc-notifications {
   height: auto;
-  background: var(--notifications-bg-color);
   opacity: 1;
   transition: all 1s;
 }
