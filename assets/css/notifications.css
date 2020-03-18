@@ -1,6 +1,5 @@
-@import "variables.css";
-
 wpcampus-notifications {
+  --notifications-bg-color: #e4eaf4;
   display: block;
   color: #222;
   font-size: 0.95rem;
@@ -22,9 +21,7 @@ wpcampus-notifications *:last-child {
 wpcampus-notifications .wpc-notification {
   display: flex;
   align-items: center;
-  max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 1rem var(--container-padding-side);
 }
 wpcampus-notifications .wpc-notification .wpc-notification__icon {
   padding: 0 0.8rem 0 0;
@@ -43,7 +40,7 @@ wpcampus-notifications .wpc-notification .wpc-notification__message {
 }
 wpcampus-notifications .wpc-notifications {
   height: auto;
-  background: var(--wpc-blue-light);
+  background: var(--notifications-bg-color);
   opacity: 1;
   transition: all 1s;
 }
