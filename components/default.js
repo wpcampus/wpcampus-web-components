@@ -89,6 +89,16 @@ class WPCampusHTMLElement extends HTMLElement {
     }
     return this.rendering ? true === this.rendering : false;
   }
+  wrapTemplate(template,includeAreas,includeGrid) {
+    const id = this.componentID;
+    if (includeAreas) {
+      let gridCSS = (true === includeGrid) ? " wpc-areas--grid" : "";
+      template = `<div class="wpc-areas${gridCSS} wpc-${id}__areas">` + template + `</div>`;
+    }
+    return `<div class="wpc-${id} wpc-wrapper">
+      <div class="wpc-container wpc-${id}__container">` + template + `</div>
+    </div>`;
+  }
   connectedCallback() {
     this.connected = true;
   }

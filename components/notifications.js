@@ -25,7 +25,8 @@ const messageSelector = ".wpc-notification__message";
 
 const loadingClass = "wpc-notifications--loading";
 
-const template = `<div class="wpc-notifications">
+// wpc-area is the grid system used by WPCampus themes.
+const template = `<div class="wpc-area wpc-notifications__area">
   <div class="wpc-notification">
     <div class="wpc-notification__icon">
       <?xml version="1.0" encoding="utf-8"?>
@@ -133,7 +134,7 @@ class WPCampusNotifications extends WPCampusHTMLElement {
   }
   getNotificationTemplate(notification, loading) {
     const templateDiv = document.createElement("div");
-    templateDiv.innerHTML = template;
+    templateDiv.innerHTML = this.wrapTemplate(template,true);
 
     if (notification) {
       templateDiv.querySelector(messageSelector).innerHTML = notification;
