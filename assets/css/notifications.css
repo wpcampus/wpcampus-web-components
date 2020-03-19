@@ -1,9 +1,9 @@
 wpcampus-notifications {
   display: block;
-  color: #222;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  text-align: left;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-align: inherit;
 }
 wpcampus-notifications * {
   color: inherit;
