@@ -5,8 +5,8 @@ const Handlebars = require("handlebars");
 const sessions = require("./data/sessions.json");
 
 Handlebars.registerHelper("excited", function(aString) {
-  //console.log(this);
-  return aString + "!!!!!!!!!";
+	//console.log(this);
+	return aString + "!!!!!!!!!";
 });
 
 const templateHTML = `{{#each .}}
@@ -19,16 +19,16 @@ const templateHTML = `{{#each .}}
 const template = Handlebars.compile(templateHTML);
 
 class WPCampusLibrary extends WPCampusHTMLElement {
-  constructor() {
-    super("library");
-  }
-  getSessions() {
-    return sessions;
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    this.innerHTML = template(this.getSessions());
-  }
+	constructor() {
+		super("library");
+	}
+	getSessions() {
+		return sessions;
+	}
+	connectedCallback() {
+		super.connectedCallback();
+		this.innerHTML = template(this.getSessions());
+	}
 }
 customElements.define("wpcampus-library", WPCampusLibrary);
 

@@ -11,16 +11,16 @@ const template = `<div class="wpc-area wpc-coc__area">
 </div>`;
 
 class WPCampusCoC extends WPCampusHTMLElement {
-    constructor() {
-        super("coc");
-        this.addStyles(stylesheet);
-    }
-    connectedCallback() {
-        super.connectedCallback();
-        this.setAttribute("role", "complementary");
-        this.setAttribute("aria-label", "Code of Conduct");
-        this.innerHTML = this.wrapTemplate(template, true);
-    }
+	constructor() {
+		super("coc");
+		this.addStyles(stylesheet);
+	}
+	connectedCallback() {
+		super.connectedCallback();
+		this.setAttribute("role", "complementary");
+		this.setAttribute("aria-label", "Code of Conduct");
+		this.innerHTML = this.wrapTemplate(template, true);
+	}
 }
 customElements.define("wpcampus-coc", WPCampusCoC);
 

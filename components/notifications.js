@@ -46,299 +46,301 @@ const notificationTemplate = `<li class="wpc-notification">
 </li>`;
 
 class WPCampusNotifications extends WPCampusHTMLElement {
-  constructor() {
-    super("notifications");
-    this.addStyles(stylesheet);
-    if (this.dataset.limit !== undefined) {
-      this.limit = parseInt(this.dataset.limit);
-    }
-    if (!this.limit || !(this.limit === -1 || this.limit > 0)) {
-      this.limit = limitDefault;
-    }
-  }
-  checkPropertyNumber(value, defaultValue, forcePositive) {
-    if (!value) {
-      return defaultValue;
-    }
-    if (!Number.isInteger(value)) {
-      return parseInt(value);
-    }
-    if (forcePositive) {
-      return Math.abs(value);
-    }
-    return value;
-  }
-  isNotificationLocalExpired() {
-    var notificationLocalTime = this.getLocalStorageItem(localStorageKeyTime);
-    if (!notificationLocalTime) {
-      return true;
-    }
-    const difference = (Date.now() - notificationLocalTime) / 1000;
-    this.localStorageSeconds = this.checkPropertyNumber(
-      this.localStorageSeconds,
-      localStorageSecondsDefault,
-      true
-    );
-    return difference >= this.localStorageSeconds;
-  }
-  pauseTimer() {
-    const that = this;
-    that.resetTimerFunction = that.resetTimer.bind(that);
-    document.addEventListener("mousemove", that.resetTimerFunction);
-    document.addEventListener("keydown", that.resetTimerFunction);
-  }
-  resetTimer() {
-    const that = this;
-    requestUpdateCount = 0;
-    document.removeEventListener("mousemove", that.resetTimerFunction);
-    document.removeEventListener("keydown", that.resetTimerFunction);
-    that.loadNotificationFromRequest();
-  }
-  setUpdateTimer() {
-    const that = this;
-    this.requestUpdateSeconds = this.checkPropertyNumber(
-      this.requestUpdateSeconds,
-      requestUpdateSecondsDefault,
-      true
-    );
-    setTimeout(function() {
-      that.loadNotificationFromRequest();
-    }, this.requestUpdateSeconds * 1000);
-  }
-  getNotificationURL() {
-    let url = "";
-    if (!this.notificationsURL) {
-      url = notificationsURLDefault;
-    } else {
-      url = this.notificationsURL;
-    }
-    // Add limit to URL.
-    if (this.limit !== undefined) {
-      if (url.search("/\?/g") >= 0) {
-        url += "&";
-      } else {
-        url += "?";
-      }
-      url += `limit=${this.limit}`;
-    }
-    return url;
-  }
-  requestNotification() {
-    const url = this.getNotificationURL();
-    return new Promise((resolve, reject) => {
-      const request = new XMLHttpRequest();
-      request.open("GET", url);
-      request.onload = () => resolve(request.responseText);
-      request.onerror = () => reject(request);
-      request.send();
-    });
-  }
-  storeNotificationsLocal(notifications) {
-    this.setLocalStorageItem(localStorageKey, JSON.stringify(notifications));
-    this.setLocalStorageItem(localStorageKeyTime, Date.now());
-  }
-  getNotificationsLocal() {
-    const that = this;
-    return new Promise((resolve, reject) => {
-      try {
-        if (that.isNotificationLocalExpired()) {
-          resolve(null);
-        }
-        let notifications = that.getLocalStorageItem(localStorageKey);
-        if (notifications) {
-          notifications = JSON.parse(notifications);
-        }
-        if (notifications.length !== that.limit) {
-          resolve(null);
-        }
-        resolve(notifications);
-      } catch (error) {
-        reject(error);
-      }
-    });
-  }
-  getNotificationTemplate(notification) {
-    const templateDiv = document.createElement("div");
-    templateDiv.innerHTML = notificationTemplate;
+	constructor() {
+		super("notifications");
+		this.addStyles(stylesheet);
+		if (this.dataset.limit !== undefined) {
+			this.limit = parseInt(this.dataset.limit);
+		}
+		if (!this.limit || !(this.limit === -1 || this.limit > 0)) {
+			this.limit = limitDefault;
+		}
+	}
+	checkPropertyNumber(value, defaultValue, forcePositive) {
+		if (!value) {
+			return defaultValue;
+		}
+		if (!Number.isInteger(value)) {
+			return parseInt(value);
+		}
+		if (forcePositive) {
+			return Math.abs(value);
+		}
+		return value;
+	}
+	isNotificationLocalExpired() {
+		var notificationLocalTime = this.getLocalStorageItem(localStorageKeyTime);
+		if (!notificationLocalTime) {
+			return true;
+		}
+		const difference = (Date.now() - notificationLocalTime) / 1000;
+		this.localStorageSeconds = this.checkPropertyNumber(
+			this.localStorageSeconds,
+			localStorageSecondsDefault,
+			true
+		);
+		return difference >= this.localStorageSeconds;
+	}
+	pauseTimer() {
+		const that = this;
+		that.resetTimerFunction = that.resetTimer.bind(that);
+		document.addEventListener("mousemove", that.resetTimerFunction);
+		document.addEventListener("keydown", that.resetTimerFunction);
+	}
+	resetTimer() {
+		const that = this;
+		requestUpdateCount = 0;
+		document.removeEventListener("mousemove", that.resetTimerFunction);
+		document.removeEventListener("keydown", that.resetTimerFunction);
+		that.loadNotificationFromRequest();
+	}
+	setUpdateTimer() {
+		const that = this;
+		this.requestUpdateSeconds = this.checkPropertyNumber(
+			this.requestUpdateSeconds,
+			requestUpdateSecondsDefault,
+			true
+		);
+		setTimeout(function() {
+			that.loadNotificationFromRequest();
+		}, this.requestUpdateSeconds * 1000);
+	}
+	getNotificationURL() {
+		let url = "";
+		if (!this.notificationsURL) {
+			url = notificationsURLDefault;
+		} else {
+			url = this.notificationsURL;
+		}
+		// Add limit to URL.
+		if (this.limit !== undefined) {
+			if (url.search(/\?/g) >= 0) {
+				url += "&";
+			} else {
+				url += "?";
+			}
+			url += `limit=${this.limit}`;
+		}
+		return url;
+	}
+	requestNotification() {
+		const url = this.getNotificationURL();
+		return new Promise((resolve, reject) => {
+			const request = new XMLHttpRequest();
+			request.open("GET", url);
+			request.onload = () => resolve(request.responseText);
+			request.onerror = () => reject(request);
+			request.send();
+		});
+	}
+	storeNotificationsLocal(notifications) {
+		this.setLocalStorageItem(localStorageKey, JSON.stringify(notifications));
+		this.setLocalStorageItem(localStorageKeyTime, Date.now());
+	}
+	getNotificationsLocal() {
+		const that = this;
+		return new Promise((resolve, reject) => {
+			try {
+				if (that.isNotificationLocalExpired()) {
+					resolve(null);
+				}
+				let notifications = that.getLocalStorageItem(localStorageKey);
+				if (notifications) {
+					notifications = JSON.parse(notifications);
+				}
+				if (notifications.length !== that.limit) {
+					resolve(null);
+				}
+				resolve(notifications);
+			} catch (error) {
+				reject(error);
+			}
+		});
+	}
+	getNotificationTemplate(notification) {
+		const templateDiv = document.createElement("div");
+		templateDiv.innerHTML = notificationTemplate;
 
-    if (notification) {
-      templateDiv.querySelector(messageSelector).innerHTML = notification;
-    }
+		if (notification) {
+			templateDiv.querySelector(messageSelector).innerHTML = notification;
+		}
 
-    return templateDiv.innerHTML;
-  }
-  getNotificationsHTML(notifications, loading) {
-    const templateDiv = document.createElement("div");
+		return templateDiv.innerHTML;
+	}
+	getNotificationsHTML(notifications, loading) {
+		const templateDiv = document.createElement("div");
 
-    let notificationsHTML = `<ul class="${listSelector}">${notifications}</ul>`;
-    notificationsHTML = this.wrapTemplateArea(notificationsHTML);
-    notificationsHTML = this.wrapTemplate(notificationsHTML, true);
+		let notificationsHTML = `<ul class="${listSelector}">${notifications}</ul>`;
+		notificationsHTML = this.wrapTemplateArea(notificationsHTML);
+		notificationsHTML = this.wrapTemplate(notificationsHTML, true);
 
-    templateDiv.innerHTML = notificationsHTML;
+		templateDiv.innerHTML = notificationsHTML;
 
-    if (true === loading) {
-      templateDiv
-        .querySelector(notificationsSelector)
-        .classList.add(loadingNotificationsClass);
-    }
+		if (true === loading) {
+			templateDiv
+				.querySelector(notificationsSelector)
+				.classList.add(loadingNotificationsClass);
+		}
 
-    return templateDiv.innerHTML;
-  }
-  loadNotificationsHTML(notifications, loading) {
-    const that = this;
-    return new Promise((resolve, reject) => {
-      if (!notifications || !notifications.length) {
-        reject("There are no notifications to display.");
-      }
+		return templateDiv.innerHTML;
+	}
+	loadNotificationsHTML(notifications, loading) {
+		const that = this;
+		return new Promise((resolve, reject) => {
+			if (!notifications || !notifications.length) {
+				reject("There are no notifications to display.");
+			}
 
-      // Build new template.
-      let newMessages = "";
+			// Build new template.
+			let newMessages = "";
 
-      // Get our limit of notifications.
-      let notificationLimit;
-      if (that.limit !== undefined && that.limit > 0) {
-        notificationLimit = that.limit;
-      } else {
-        notificationLimit = notifications.length;
-      }
+			// Get our limit of notifications.
+			let notificationLimit;
+			if (that.limit !== undefined && that.limit > 0) {
+				notificationLimit = that.limit;
+			} else {
+				notificationLimit = notifications.length;
+			}
 
-      for (let i = 0; i < notificationLimit; i++) {
-        let notification = notifications[i];
+			for (let i = 0; i < notificationLimit; i++) {
+				let notification = notifications[i];
 
-        // Get new message.
-        let newMessage = notification ? notification.content.rendered : null;
+				// Get new message.
+				let newMessage = notification ? notification.content.rendered : null;
 
-        if (!newMessage) {
-          continue;
-        }
+				if (!newMessage) {
+					continue;
+				}
 
-        // Strip parent <p>.
-        const newMessageDiv = document.createElement("div");
-        newMessageDiv.innerHTML = newMessage;
-        newMessage = newMessageDiv.querySelector("*:first-child").innerHTML;
+				// Strip parent <p>.
+				const newMessageDiv = document.createElement("div");
+				newMessageDiv.innerHTML = newMessage;
+				newMessage = newMessageDiv.querySelector("*:first-child").innerHTML;
 
-        // Add to the rest of the messages.
-        newMessages += that.getNotificationTemplate(newMessage);
+				// Add to the rest of the messages.
+				newMessages += that.getNotificationTemplate(newMessage);
 
-      }
+			}
 
-      if (!newMessages) {
-        return resolve(false);
-      }
+			if (!newMessages) {
+				return resolve(false);
+			}
 
-      // Wrap in global templates.
-      // Only set loading if innerHTML is empty to begin with.
-      let notificationsHTML = that.getNotificationsHTML(newMessages, loading && !that.innerHTML);
+			// Wrap in global templates.
+			// Only set loading if innerHTML is empty to begin with.
+			let notificationsHTML = that.getNotificationsHTML(newMessages, loading && !that.innerHTML);
 
-      if (!that.innerHTML) {
+			if (!that.innerHTML) {
 
-        // Load the notification HTML.
-        that.innerHTML = notificationsHTML;
+				// Load the notification HTML.
+				that.innerHTML = notificationsHTML;
 
-        if (true === loading) {
-          setTimeout(function() {
-            that
-              .querySelector(notificationsSelector)
-              .classList.remove(loadingNotificationsClass);
-          }, 200);
-        }
+				if (true === loading) {
+					setTimeout(function() {
+						that
+							.querySelector(notificationsSelector)
+							.classList.remove(loadingNotificationsClass);
+					}, 200);
+				}
 
-        return resolve(true);
-      }
+				return resolve(true);
+			}
 
-      // Get out of here if no message or the message is the same.
-      let notificationsList = that.querySelector(`.${listSelector}`);
-      if (newMessages === notificationsList.innerHTML) {
-        return resolve(true);
-      }
+			// Get out of here if no message or the message is the same.
+			let notificationsList = that.querySelector(`.${listSelector}`);
+			if (newMessages === notificationsList.innerHTML) {
+				return resolve(true);
+			}
 
-      // Get notifications wrapper.
-      var notificationsDiv = that.querySelector(notificationsSelector);
+			// Get notifications wrapper.
+			var notificationsDiv = that.querySelector(notificationsSelector);
 
-      that.fadeOut(notificationsDiv).then(function () {
-        that.innerHTML = notificationsHTML;
-        that.fadeIn(notificationsDiv).then(function () {
-          return resolve(true);
-        });
-      });
-    });
-  }
-  // Will return true if notifications were loaded from local storage.
-  async loadNotificationsFromLocal() {
-    let notificationLocal = await this.getNotificationsLocal();
-    if (notificationLocal) {
-      this.loadNotificationsHTML(notificationLocal);
-      return true;
-    }
-    return false;
-  }
-  async loadNotificationFromRequest() {
-    const that = this;
+			that.fadeOut(notificationsDiv).then(function () {
+				that.innerHTML = notificationsHTML;
+				that.fadeIn(notificationsDiv).then(function () {
+					return resolve(true);
+				});
+			});
+		});
+	}
+	// Will return true if notifications were loaded from local storage.
+	async loadNotificationsFromLocal() {
+		let notificationLocal = await this.getNotificationsLocal();
+		if (notificationLocal) {
+			this.loadNotificationsHTML(notificationLocal);
+			return true;
+		}
+		return false;
+	}
+	async loadNotificationFromRequest() {
+		const that = this;
 
-    // Limit the number of requests we make. Can be reset by user activity.
-    requestUpdateCount++;
-    this.requestUpdateMax = this.checkPropertyNumber(
-      this.requestUpdateMax,
-      requestUpdateMaxDefault,
-      true
-    );
-    if (requestUpdateCount > this.requestUpdateMax) {
-      that.pauseTimer();
-      return;
-    }
+		// Limit the number of requests we make. Can be reset by user activity.
+		requestUpdateCount++;
+		this.requestUpdateMax = this.checkPropertyNumber(
+			this.requestUpdateMax,
+			requestUpdateMaxDefault,
+			true
+		);
+		if (requestUpdateCount > this.requestUpdateMax) {
+			that.pauseTimer();
+			return;
+		}
 
-    that.requestNotification()
-      .then(function (notificationResponse) {
-        try {
-          if (!notificationResponse) {
-            throw "The notification request had no response.";
-          }
+		that.requestNotification()
+			.then(function (notificationResponse) {
+				try {
+					if (!notificationResponse) {
+						throw "The notification request had no response.";
+					}
 
-          // Convert string to object.
-          const notifications = JSON.parse(notificationResponse);
+					// Convert string to object.
+					const notifications = JSON.parse(notificationResponse);
 
-          that.loadNotificationsHTML(notifications, true)
-            .then(function (loaded) {
+					that.loadNotificationsHTML(notifications, true)
+						.then(function (loaded) {
 
-              // This means the notifications were changed/updated.
-              if (true === loaded) {
-                that.storeNotificationsLocal(notifications);
-              }
-            })
-            .catch(function (error) {
-              // @TODO what to do when the request doesn't work?
-            });
-        } catch (error) { }
-      })
-      .catch(function(error) {
-        // @TODO what to do when the request doesn't work?
-      })
-      .finally(function() {
-        that.setUpdateTimer();
-      });
-  }
-  async loadNotification() {
-    let loadedFromLocal = await this.loadNotificationsFromLocal();
-    if (!loadedFromLocal) {
-      await this.loadNotificationFromRequest();
-    }
-    this.setUpdateTimer();
-  }
-  async render() {
-    if (!this.isConnected() || this.isRendering()) {
-      return;
-    }
-    this.isRendering(true);
-    this.setAttribute("role", "complementary");
-    this.setAttribute("aria-live", "polite");
-    this.setAttribute("aria-label", "Notifications");
-    await this.loadNotification();
-    this.isRendering(false);
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    this.render();
-  }
+							// This means the notifications were changed/updated.
+							if (true === loaded) {
+								that.storeNotificationsLocal(notifications);
+							}
+						})
+						.catch(function () {
+							// @TODO what to do when the request doesn't work?
+						});
+				} catch (error) {
+					// @TODO handle error
+				}
+			})
+			.catch(function() {
+				// @TODO what to do when the request doesn't work?
+			})
+			.finally(function() {
+				that.setUpdateTimer();
+			});
+	}
+	async loadNotification() {
+		let loadedFromLocal = await this.loadNotificationsFromLocal();
+		if (!loadedFromLocal) {
+			await this.loadNotificationFromRequest();
+		}
+		this.setUpdateTimer();
+	}
+	async render() {
+		if (!this.isConnected() || this.isRendering()) {
+			return;
+		}
+		this.isRendering(true);
+		this.setAttribute("role", "complementary");
+		this.setAttribute("aria-live", "polite");
+		this.setAttribute("aria-label", "Notifications");
+		await this.loadNotification();
+		this.isRendering(false);
+	}
+	connectedCallback() {
+		super.connectedCallback();
+		this.render();
+	}
 }
 customElements.define("wpcampus-notifications", WPCampusNotifications);
 

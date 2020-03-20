@@ -8,14 +8,14 @@ const template = `<div class="wpc-area wpc-footer__area wpc-footer__area--logo">
   <div class="wpc-area wpc-footer__area wpc-footer__area--copyright">Copyright</div>`;
 
 class WPCampusFooter extends WPCampusHTMLElement {
-  constructor() {
-    super("footer");
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    this.setAttribute("role", "contentinfo");
-    this.innerHTML = this.wrapTemplate(template, true, true);
-  }
+	constructor() {
+		super("footer");
+	}
+	connectedCallback() {
+		super.connectedCallback();
+		this.setAttribute("role", "contentinfo");
+		this.innerHTML = this.wrapTemplate(template, true, true);
+	}
 }
 customElements.define("wpcampus-footer", WPCampusFooter);
 
