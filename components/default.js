@@ -89,6 +89,10 @@ class WPCampusHTMLElement extends HTMLElement {
     }
     return this.rendering ? true === this.rendering : false;
   }
+  wrapTemplateArea(template) {
+    const id = this.componentID;
+    return `<div class="wpc-area wpc-${id}__area">` + template + "</div>";
+  }
   wrapTemplate(template,includeAreas,includeGrid) {
     const id = this.componentID;
     if (includeAreas) {
