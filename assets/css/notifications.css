@@ -37,6 +37,16 @@ wpcampus-notifications .wpc-notification .wpc-notification__icon .wpc-notificati
 wpcampus-notifications .wpc-notification .wpc-notification__message {
   flex-grow: 1;
 }
+wpcampus-notifications ul.wpc-notifications__list {
+  display: block;
+  margin: 0;
+}
+wpcampus-notifications ul.wpc-notifications__list li.wpc-notification {
+  margin: 1rem 0 0;
+}
+wpcampus-notifications ul.wpc-notifications__list li.wpc-notification:first-child {
+  margin-top: 0;
+}
 wpcampus-notifications .wpc-notifications {
   height: auto;
   opacity: 1;
