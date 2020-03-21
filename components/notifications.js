@@ -4,12 +4,16 @@ const stylesheet = require("../assets/css/notifications.css");
 const localStorageKey = "wpcNotification";
 const localStorageKeyTime = "wpcNotificationTime";
 
+// Format options for displaying notifications.
+const formatOptions = ["list", "listIcon"];
+const formatDefault = "listIcon";
+
 // Default number of notifications we're retrieving.
 const limitDefault = 1;
 
 // URL to request notification info. Can be overwritten.
 const notificationsURLDefault =
-  "https://wpcampus.org/wp-json/wpcampus/data/notifications";
+	"https://wpcampus.org/wp-json/wpcampus/data/notifications";
 
 // Life of notification stored locally in seconds (5 minutes). Can be overwritten.
 const localStorageSecondsDefault = 300;
@@ -28,27 +32,16 @@ const loadingNotificationsClass = "wpc-notifications--loading";
 const listSelector = "wpc-notifications__list";
 const messageSelector = ".wpc-notification__message";
 
-// wpc-area is the grid system used by WPCampus themes.
-const notificationTemplate = `<li class="wpc-notification">
-  <div class="wpc-notification__icon">
-    <?xml version="1.0" encoding="utf-8"?>
-    <svg aria-hidden="true" role="decoration" class="wpc-notification__icon__graphic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
-      <title></title>
-      <style type="text/css">.wpc-notification__icon__i--white{fill:#FFFFFF;}</style>
-      <circle class="wpc-notification__icon__bg" cx="15" cy="15" r="15" />
-      <circle class="wpc-notification__icon__i wpc-notification__icon__i--dot wpc-notification__icon__i--white" cx="15" cy="8.2" r="2.4" />
-      <g>
-        <path class="wpc-notification__icon__i wpc-notification__icon__i--body wpc-notification__icon__i--white" d="M12.6,23.1c0,0.3,0.3,0.6,0.6,0.6h3.6c0.3,0,0.6-0.3,0.6-0.6v-9.6c0-0.3-0.3-0.6-0.6-0.6h-3.6c-0.3,0-0.6,0.3-0.6,0.6V23.1z" />
-      </g>
-    </svg>
-  </div>
-  <div class="wpc-notification__message"></div>
-</li>`;
-
 class WPCampusNotifications extends WPCampusHTMLElement {
 	constructor() {
 		super("notifications");
 		this.addStyles(stylesheet);
+		if (this.dataset.format !== undefined) {
+			this.format = this.dataset.format;
+		}
+		if (!formatOptions.includes(this.format)) {
+			this.format = formatDefault;
+		}
 		if (this.dataset.limit !== undefined) {
 			this.limit = parseInt(this.dataset.limit);
 		}
@@ -158,6 +151,32 @@ class WPCampusNotifications extends WPCampusHTMLElement {
 		});
 	}
 	getNotificationTemplate(notification) {
+		let notificationTemplate = "";
+		let notificationClass = "wpc-notification";
+
+		// Add the icon.
+		if ("listIcon" === this.format) {
+			notificationClass += " wpc-notification--icon";
+			notificationTemplate += `<div class="wpc-notification__icon">
+			<?xml version="1.0" encoding="utf-8"?>
+			<svg aria-hidden="true" role="decoration" class="wpc-notification__icon__graphic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
+			  <title></title>
+			  <style type="text/css">.wpc-notification__icon__i--white{fill:#FFFFFF;}</style>
+			  <circle class="wpc-notification__icon__bg" cx="15" cy="15" r="15" />
+			  <circle class="wpc-notification__icon__i wpc-notification__icon__i--dot wpc-notification__icon__i--white" cx="15" cy="8.2" r="2.4" />
+			  <g>
+				<path class="wpc-notification__icon__i wpc-notification__icon__i--body wpc-notification__icon__i--white" d="M12.6,23.1c0,0.3,0.3,0.6,0.6,0.6h3.6c0.3,0,0.6-0.3,0.6-0.6v-9.6c0-0.3-0.3-0.6-0.6-0.6h-3.6c-0.3,0-0.6,0.3-0.6,0.6V23.1z" />
+			  </g>
+			</svg>
+		  </div>`;
+		}
+
+		// Add message.
+		notificationTemplate += "<div class=\"wpc-notification__message\"></div>";
+
+		// Wrap in <li>.
+		notificationTemplate = `<li class="${notificationClass}">` + notificationTemplate + "</li>";
+
 		const templateDiv = document.createElement("div");
 		templateDiv.innerHTML = notificationTemplate;
 
