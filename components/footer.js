@@ -196,7 +196,7 @@ const template = `<div class="wpc-area wpc-footer__area wpc-footer__area--logo">
 
 class WPCampusFooter extends WPCampusHTMLElement {
 	constructor() {
-		super("footer");
+		super({ componentID: "footer" });
 	}
 	connectedCallback() {
 		super.connectedCallback();

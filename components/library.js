@@ -4,7 +4,7 @@ const Handlebars = require("handlebars");
 // Placeholder until make http requests.
 const sessions = require("./data/sessions.json");
 
-Handlebars.registerHelper("excited", function(aString) {
+Handlebars.registerHelper("excited", (aString) => {
 	//console.log(this);
 	return aString + "!!!!!!!!!";
 });
@@ -20,7 +20,7 @@ const template = Handlebars.compile(templateHTML);
 
 class WPCampusLibrary extends WPCampusHTMLElement {
 	constructor() {
-		super("library");
+		super({ componentID: "library" });
 	}
 	getSessions() {
 		return sessions;

@@ -1,0 +1,13 @@
+wpcampus-blog {
+	display: block;
+	color: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	text-align: inherit;
+}
+wpcampus-blog * {
+	color: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	text-align: inherit;
+}

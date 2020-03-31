@@ -1,3 +1,4 @@
+require("./components/blog");
 require("./components/conduct");
 require("./components/footer");
 require("./components/library");

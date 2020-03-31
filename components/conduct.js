@@ -12,7 +12,7 @@ const template = `<div class="wpc-area wpc-coc__area">
 
 class WPCampusCoC extends WPCampusHTMLElement {
 	constructor() {
-		super("coc");
+		super({ componentID: "coc" });
 		this.addStyles(stylesheet);
 	}
 	connectedCallback() {

@@ -1,20 +1,20 @@
 const WPCampusRequestElement = require("./request");
-const stylesheet = require("../assets/css/notifications.css");
+const stylesheet = require("../assets/css/blog.css");
 
-// Format options for displaying notifications.
-const formatOptions = ["list", "listIcon"];
-const formatDefault = "listIcon";
+// Format options for displaying blog posts.
+const formatOptions = ["list", "excerpt"];
+const formatDefault = "excerpt";
 
-const loadingClass = "wpc-notifications--loading";
-const listSelector = "wpc-notifications__list";
+const loadingClass = "wpc-blog--loading";
+const postsSelector = "wpc-blog__posts";
 
-class WPCampusNotifications extends WPCampusRequestElement {
+class WPCampusBlog extends WPCampusRequestElement {
 	constructor() {
 		const config = {
-			componentID: "notifications",
-			localStorageKey: "wpcNotification",
-			localStorageKeyTime: "wpcNotificationTime",
-			requestURL: "https://wpcampus.org/wp-json/wpcampus/data/notifications"
+			componentID: "blog",
+			localStorageKey: "wpcBlog",
+			localStorageKeyTime: "wpcBlogTime",
+			requestURL: "https://wpcampus.org/wp-json/wp/v2/posts"
 		};
 		super(config);
 
@@ -27,46 +27,49 @@ class WPCampusNotifications extends WPCampusRequestElement {
 			this.format = formatDefault;
 		}
 	}
-	getTemplate(content) {
+	getTemplate(item) {
 		let template = "";
-		let notificationClass = "wpc-notification";
 
-		// Add the icon.
-		if ("listIcon" === this.format) {
-			notificationClass += " wpc-notification--icon";
-			template += `<div class="wpc-notification__icon">
-			<?xml version="1.0" encoding="utf-8"?>
-			<svg aria-hidden="true" role="decoration" class="wpc-notification__icon__graphic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
-			  <title></title>
-			  <style type="text/css">.wpc-notification__icon__i--white{fill:#FFFFFF;}</style>
-			  <circle class="wpc-notification__icon__bg" cx="15" cy="15" r="15" />
-			  <circle class="wpc-notification__icon__i wpc-notification__icon__i--dot wpc-notification__icon__i--white" cx="15" cy="8.2" r="2.4" />
-			  <g>
-				<path class="wpc-notification__icon__i wpc-notification__icon__i--body wpc-notification__icon__i--white" d="M12.6,23.1c0,0.3,0.3,0.6,0.6,0.6h3.6c0.3,0,0.6-0.3,0.6-0.6v-9.6c0-0.3-0.3-0.6-0.6-0.6h-3.6c-0.3,0-0.6,0.3-0.6,0.6V23.1z" />
-			  </g>
-			</svg>
-		  </div>`;
+		// Make sure have a title.
+		let title = item.title.rendered ? item.title.rendered : null;
+		if (!title) {
+			return title;
 		}
 
-		// Add message.
-		template += "<div class=\"wpc-notification__message\"></div>";
-
-		// Wrap in <li>.
-		template = `<li class="${notificationClass}">` + template + "</li>";
-
-		const templateDiv = document.createElement("div");
-		templateDiv.innerHTML = template;
-
-		if (content) {
-			templateDiv.querySelector(".wpc-notification__message").innerHTML = content;
+		// Make sure have a link.
+		let link = item.link ? item.link : null;
+		if (!link) {
+			return link;
 		}
 
-		return templateDiv.innerHTML;
+		// Make sure have a excerpt.
+		let excerpt = item.excerpt.rendered ? item.excerpt.rendered : null;
+		if (!excerpt) {
+			return template;
+		}
+
+		// Wrap title in link.
+		template += `<a href="${link}">${title}</a>`;
+
+		// Wrap title in heading.
+		template = `<h3 class="wpc-blog__title">${template}</h3>`;
+
+		// Add excerpt.
+		template += `<div class="wpc-blog__excerpt">${excerpt}</div>`;
+
+		// Wrap in <div>.
+		template = "<div class=\"wpc-blog__post\">" + template + "</div>";
+
+		return template;
 	}
 	getHTMLMarkup(content, loading) {
 		const templateDiv = document.createElement("div");
 
-		let markup = `<ul class="${listSelector}">${content}</ul>`;
+		let markup = `<div class="${postsSelector}">${content}</div>`;
+
+		// Add button.
+		markup += "<a href=\"https://wpcampus.org/blog\">Visit the WPCampus blog</a>";
+
 		markup = this.wrapTemplateArea(markup);
 		markup = this.wrapTemplate(markup, true);
 
@@ -101,20 +104,8 @@ class WPCampusNotifications extends WPCampusRequestElement {
 			for (let i = 0; i < contentLimit; i++) {
 				let item = content[i];
 
-				// Get new message.
-				let newMessage = item ? item.content.rendered : null;
-
-				if (!newMessage) {
-					continue;
-				}
-
-				// Strip parent <p>.
-				const newMessageDiv = document.createElement("div");
-				newMessageDiv.innerHTML = newMessage;
-				newMessage = newMessageDiv.querySelector("*:first-child").innerHTML;
-
 				// Add to the rest of the messages.
-				newContent += that.getTemplate(newMessage);
+				newContent += that.getTemplate(item);
 
 			}
 
@@ -143,7 +134,7 @@ class WPCampusNotifications extends WPCampusRequestElement {
 			}
 
 			// Get out of here if no message or the message is the same.
-			let existingContent = that.querySelector(`.${listSelector}`);
+			let existingContent = that.querySelector(`.${postsSelector}`);
 			if (newContent === existingContent.innerHTML) {
 				return resolve(true);
 			}
@@ -215,7 +206,7 @@ class WPCampusNotifications extends WPCampusRequestElement {
 
 			that.setAttribute("role", "complementary");
 			that.setAttribute("aria-live", "polite");
-			that.setAttribute("aria-label", "Notifications");
+			that.setAttribute("aria-label", "Blog");
 
 			that.loadContent().then(() => {
 				that.isRendering(false);
@@ -227,6 +218,6 @@ class WPCampusNotifications extends WPCampusRequestElement {
 		this.render();
 	}
 }
-customElements.define("wpcampus-notifications", WPCampusNotifications);
+customElements.define("wpcampus-blog", WPCampusBlog);
 
-module.exports = WPCampusNotifications;
+module.exports = WPCampusBlog;

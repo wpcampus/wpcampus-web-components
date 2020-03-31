@@ -1,11 +1,31 @@
 const defaultFadeInterval = 80;
 
+// Life of notification stored locally in seconds (5 minutes). Can be overwritten.
+const localStorageSecondsDefault = 300;
+
 class WPCampusHTMLElement extends HTMLElement {
-	constructor(componentID) {
+	constructor(config) {
 		super();
 		this.connected = false;
 		this.rendering = false;
-		this.componentID = componentID;
+
+		// Process our properties.
+		this.processProperties(
+			[
+				"componentID",
+				"localStorageKey",
+				"localStorageKeyTime",
+				"localStorageSeconds"
+			],
+			config
+		);
+	}
+	processProperties(properties, values) {
+		properties.forEach(property => {
+			if (values[property]) {
+				this[property] = values[property];
+			}
+		});
 	}
 	initShadow(mode) {
 		if (undefined === mode || !["open", "closed"].includes(mode)) {
@@ -30,7 +50,7 @@ class WPCampusHTMLElement extends HTMLElement {
 			interval = defaultFadeInterval;
 		}
 		return new Promise((resolve) => {
-			var fadeEffect = setInterval(function() {
+			var fadeEffect = setInterval(() => {
 				if (!target.style.opacity) {
 					target.style.opacity = 0;
 				}
@@ -52,7 +72,7 @@ class WPCampusHTMLElement extends HTMLElement {
 			interval = defaultFadeInterval;
 		}
 		return new Promise((resolve) => {
-			var fadeEffect = setInterval(function() {
+			var fadeEffect = setInterval(() => {
 				if (!target.style.opacity) {
 					target.style.opacity = 1;
 				}
@@ -66,6 +86,18 @@ class WPCampusHTMLElement extends HTMLElement {
 			}, interval);
 		});
 	}
+	checkPropertyNumber(value, defaultValue, forcePositive) {
+		if (!value) {
+			return defaultValue;
+		}
+		if (!Number.isInteger(value)) {
+			return parseInt(value);
+		}
+		if (forcePositive) {
+			return Math.abs(value);
+		}
+		return value;
+	}
 	setLocalStorageItem(key, value) {
 		localStorage.setItem(key, value);
 	}
@@ -78,6 +110,19 @@ class WPCampusHTMLElement extends HTMLElement {
 		}
 		return value;
 	}
+	isLocalStorageExpired() {
+		var localTime = this.getLocalStorageItem(this.localStorageKeyTime);
+		if (!localTime) {
+			return true;
+		}
+		const difference = (Date.now() - localTime) / 1000;
+		this.localStorageSeconds = this.checkPropertyNumber(
+			this.localStorageSeconds,
+			localStorageSecondsDefault,
+			true
+		);
+		return difference >= this.localStorageSeconds;
+	}
 	isConnected() {
 		return this.connected;
 	}
@@ -89,11 +134,14 @@ class WPCampusHTMLElement extends HTMLElement {
 		}
 		return this.rendering ? true === this.rendering : false;
 	}
+	getWrapperSelector() {
+		return `.wpc-${this.componentID}`;
+	}
 	wrapTemplateArea(template) {
 		const id = this.componentID;
 		return `<div class="wpc-area wpc-${id}__area">` + template + "</div>";
 	}
-	wrapTemplate(template,includeAreas,includeGrid) {
+	wrapTemplate(template, includeAreas, includeGrid) {
 		const id = this.componentID;
 		if (includeAreas) {
 			let gridCSS = (true === includeGrid) ? " wpc-areas--grid" : "";
@@ -102,6 +150,17 @@ class WPCampusHTMLElement extends HTMLElement {
 		return `<div class="wpc-${id} wpc-wrapper">
       <div class="wpc-container wpc-${id}__container">` + template + `</div>
     </div>`;
+	}
+	render() {
+		const that = this;
+		return new Promise((resolve, reject) => {
+			if (!that.isConnected() || that.isRendering()) {
+				reject();
+			}
+			that.classList.add("wpc-component");
+			that.classList.add(`wpc-component--${that.componentID}`);
+			resolve();
+		});
 	}
 	connectedCallback() {
 		this.connected = true;
