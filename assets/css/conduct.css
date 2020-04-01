@@ -5,15 +5,3 @@ wpcampus-coc {
   line-height: inherit;
   text-align: inherit;
 }
-wpcampus-coc * {
-  color: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  text-align: inherit;
-}
-wpcampus-coc *:first-child {
-  margin-top: 0;
-}
-wpcampus-coc *:last-child {
-  margin-bottom: 0;
-}
