@@ -1,4 +1,4 @@
-const WPCampusHTMLElement = require("./default");
+const { WPCampusHTMLElement } = require("@wpcampus/wpcampus-wc-default");
 const Handlebars = require("handlebars");
 
 // Placeholder until make http requests.

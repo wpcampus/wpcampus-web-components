@@ -23,6 +23,7 @@
 		"lint": "eslint *.js components/**/*.js *.json --fix"
 	},
 	"dependencies": {
+		"@wpcampus/wpcampus-wc-default": "^0.0.1",
 		"handlebars": "^4.5.3"
 	},
 	"devDependencies": {

@@ -1,4 +1,4 @@
-const WPCampusHTMLElement = require("./default");
+const { WPCampusHTMLElement } = require("@wpcampus/wpcampus-wc-default");
 const stylesheet = require("../assets/css/conduct.css");
 
 const cocURL = "https://wpcampus.org/code-of-conduct/";

@@ -1,4 +1,4 @@
-const WPCampusHTMLElement = require("./default");
+const { WPCampusHTMLElement } = require("@wpcampus/wpcampus-wc-default");
 
 // wpc-area is the grid system used by WPCampus themes.
 const template = `<div class="wpc-area wpc-footer__area wpc-footer__area--logo">

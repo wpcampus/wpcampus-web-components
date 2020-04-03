@@ -1,4 +1,4 @@
-const WPCampusRequestElement = require("./request");
+const { WPCampusRequestElement } = require("@wpcampus/wpcampus-wc-default");
 const stylesheet = require("../assets/css/notifications.css");
 
 // Format options for displaying notifications.
@@ -171,7 +171,7 @@ class WPCampusNotifications extends WPCampusRequestElement {
 		);
 
 		if (that.requestUpdateCount > that.requestUpdateMax) {
-			that.pauseTimer();
+			that.pauseRequestUpdateTimer();
 			return;
 		}
 
@@ -204,7 +204,7 @@ class WPCampusNotifications extends WPCampusRequestElement {
 				// @TODO what to do when the request doesn't work?
 			})
 			.finally(() => {
-				that.setUpdateTimer();
+				that.setRequestUpdateTimer();
 			});
 	}
 	async render() {

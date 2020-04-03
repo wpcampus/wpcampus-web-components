@@ -1,4 +1,4 @@
-const WPCampusRequestElement = require("./request");
+const { WPCampusRequestElement } = require("@wpcampus/wpcampus-wc-default");
 const stylesheet = require("../assets/css/blog.css");
 
 // Format options for displaying blog posts.
@@ -162,7 +162,7 @@ class WPCampusBlog extends WPCampusRequestElement {
 		);
 
 		if (that.requestUpdateCount > that.requestUpdateMax) {
-			that.pauseTimer();
+			that.pauseRequestUpdateTimer();
 			return;
 		}
 
@@ -195,7 +195,7 @@ class WPCampusBlog extends WPCampusRequestElement {
 				// @TODO what to do when the request doesn't work?
 			})
 			.finally(() => {
-				that.setUpdateTimer();
+				that.setRequestUpdateTimer();
 			});
 	}
 	async render() {
