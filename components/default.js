@@ -1,6 +1,6 @@
 const defaultFadeInterval = 80;
 
-// Life of notification stored locally in seconds (5 minutes). Can be overwritten.
+// Life of content stored locally in seconds (5 minutes). Can be overwritten.
 const localStorageSecondsDefault = 300;
 
 class WPCampusHTMLElement extends HTMLElement {
@@ -122,6 +122,39 @@ class WPCampusHTMLElement extends HTMLElement {
 			true
 		);
 		return difference >= this.localStorageSeconds;
+	}
+	storeLocalContent(content) {
+		this.setLocalStorageItem(this.localStorageKey, JSON.stringify(content));
+		this.setLocalStorageItem(this.localStorageKeyTime, Date.now());
+	}
+	getLocalContent() {
+		const that = this;
+		return new Promise((resolve, reject) => {
+			try {
+				if (that.isLocalStorageExpired()) {
+					resolve(null);
+				}
+				let response = that.getLocalStorageItem(that.localStorageKey);
+				if (response) {
+					response = JSON.parse(response);
+				}
+				if (response.length !== that.limit) {
+					resolve(null);
+				}
+				resolve(response);
+			} catch (error) {
+				reject(error);
+			}
+		});
+	}
+	// Will return true if content was loaded from local storage.
+	async loadContentFromLocal() {
+		let content = await this.getLocalContent();
+		if (content) {
+			this.loadContentHTML(content);
+			return true;
+		}
+		return false;
 	}
 	isConnected() {
 		return this.connected;

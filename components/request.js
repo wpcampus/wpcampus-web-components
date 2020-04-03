@@ -82,39 +82,6 @@ class WPCampusRequestElement extends WPCampusHTMLElement {
 			request.send();
 		});
 	}
-	getLocalContent() {
-		const that = this;
-		return new Promise((resolve, reject) => {
-			try {
-				if (that.isLocalStorageExpired()) {
-					resolve(null);
-				}
-				let response = that.getLocalStorageItem(that.localStorageKey);
-				if (response) {
-					response = JSON.parse(response);
-				}
-				if (response.length !== that.limit) {
-					resolve(null);
-				}
-				resolve(response);
-			} catch (error) {
-				reject(error);
-			}
-		});
-	}
-	storeLocalContent(content) {
-		this.setLocalStorageItem(this.localStorageKey, JSON.stringify(content));
-		this.setLocalStorageItem(this.localStorageKeyTime, Date.now());
-	}
-	// Will return true if content was loaded from local storage.
-	async loadContentFromLocal() {
-		let content = await this.getLocalContent();
-		if (content) {
-			this.loadContentHTML(content);
-			return true;
-		}
-		return false;
-	}
 	async loadContent() {
 		let loadedFromLocal = await this.loadContentFromLocal();
 		if (!loadedFromLocal) {
