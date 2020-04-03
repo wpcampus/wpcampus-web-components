@@ -194,7 +194,9 @@ const template = `<div class="wpc-area wpc-footer__area wpc-footer__area--logo">
 			</ul>
 		</nav>
 	</div>
-	<div class="wpc-area wpc-footer__area wpc-footer__area--copyright">&copy; 2015-` + new Date().getFullYear() + " <a href=\"https://wpcampus.org\">WPCampus</a></div>";
+	<div class="wpc-area wpc-footer__area wpc-footer__area--copyright">
+		<div class="wpc-copyright">&copy; 2015-` + new Date().getFullYear() + ` <a href="https://wpcampus.org">WPCampus</a></div>
+	</div>`;
 
 class WPCampusFooter extends WPCampusHTMLElement {
 	constructor() {
