@@ -103,6 +103,14 @@ const template = `<div class="wpc-area wpc-footer__area wpc-footer__area--logo">
 			</g>
 		</svg>
 	</div>
+	<div class="wpc-area wpc-footer__area wpc-footer__area--actions">
+		<nav class="wpc-nav wpc-nav--actions" aria-label="Login or become a member">
+			<ul>
+				<li><a class="wpc-button wpc-button--primary" href="/">Login</a></li>
+				<li><a class="wpc-button" href="/">Become a member</a></li>
+			</ul>
+		</nav>
+	</div>
 	<div class="wpc-area wpc-footer__area wpc-footer__area--nav">
 		<nav class="wpc-nav wpc-nav--footer" aria-label="Footer">
 			<ul>
