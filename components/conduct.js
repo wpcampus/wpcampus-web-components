@@ -7,6 +7,7 @@ const cocURL = "https://wpcampus.org/code-of-conduct/";
 const template = `<div class="wpc-area wpc-coc__area">
 	<div class="wpc-coc__graphic">
 		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 235" style="enable-background:new 0 0 200 235;" xml:space="preserve">
+			<title>Eduwapuu</title>
 			<style type="text/css">
 				.wpc-eduwapuu--0{opacity:0.8;fill:#FFFFFF;}
 				.wpc-eduwapuu--1{opacity:0.35;fill:#FFFFFF;}
