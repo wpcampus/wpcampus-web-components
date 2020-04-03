@@ -115,7 +115,9 @@ const template = `<div class="wpc-area wpc-footer__area wpc-footer__area--logo">
 		</nav>
   	</div>
 	<div class="wpc-area wpc-footer__area wpc-footer__area--desc">
-		<p>WPCampus is a community of networking, resources, and events for those using WordPress in the world of Higher Education.</p>
+		<div class="wpc-desc">
+			<p>WPCampus is a community of networking, resources, and events for anyone using WordPress in the world of Higher Education.</p>
+		</div>
 	</div>
 	<div class="wpc-area wpc-footer__area wpc-footer__area--social">
 		<nav class="wpc-nav wpc-nav--social" aria-label="Social media and other services">
