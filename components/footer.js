@@ -212,7 +212,7 @@ class WPCampusFooter extends WPCampusHTMLElement {
 	connectedCallback() {
 		super.connectedCallback();
 		this.setAttribute("role", "contentinfo");
-		this.innerHTML = this.wrapTemplate(template, true, true);
+		this.innerHTML = this.wrapTemplate(template, true, true, true);
 	}
 }
 customElements.define("wpcampus-footer", WPCampusFooter);

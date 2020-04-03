@@ -141,10 +141,13 @@ class WPCampusHTMLElement extends HTMLElement {
 		const id = this.componentID;
 		return `<div class="wpc-area wpc-${id}__area">` + template + "</div>";
 	}
-	wrapTemplate(template, includeAreas, includeGrid) {
+	wrapTemplate(template, includeAreas, includeGrid, includeRows) {
 		const id = this.componentID;
 		if (includeAreas) {
 			let gridCSS = (true === includeGrid) ? " wpc-areas--grid" : "";
+			if (includeRows) {
+				gridCSS += " wpc-areas--grid--rows";
+			}
 			template = `<div class="wpc-areas${gridCSS} wpc-${id}__areas">` + template + "</div>";
 		}
 		return `<div class="wpc-${id} wpc-wrapper">
