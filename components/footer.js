@@ -2,8 +2,7 @@ const WPCampusHTMLElement = require("./default");
 
 // wpc-area is the grid system used by WPCampus themes.
 const template = `<div class="wpc-area wpc-footer__area wpc-footer__area--logo">
-		<?xml version="1.0" encoding="utf-8"?>
-		<svg version="1.1" class="wpc-logo wpc-logo--footer" aria-label="WPCampus: Where WordPress meets Higher Education" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+		<svg version="1.1" class="wpc-logo wpc-logo--footer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	viewBox="0 0 300 50" style="enable-background:new 0 0 300 50;" xml:space="preserve">
 			<style type="text/css">.st0{fill:#484A48;}</style>
 			<title>WPCampus: Where WordPress meets Higher Education</title>
