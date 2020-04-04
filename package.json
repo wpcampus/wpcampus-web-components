@@ -24,6 +24,7 @@
 		"lint": "eslint *.js components/**/*.js *.json --fix"
 	},
 	"dependencies": {
+		"@wpcampus/wpcampus-wc-blog": "^0.0.1",
 		"@wpcampus/wpcampus-wc-conduct": "^0.0.2",
 		"@wpcampus/wpcampus-wc-default": "^0.0.1",
 		"@wpcampus/wpcampus-wc-footer": "^0.0.1",
