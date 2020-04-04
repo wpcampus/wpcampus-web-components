@@ -265,6 +265,13 @@
   resolved "https://registry.yarnpkg.com/@wpcampus/wpcampus-wc-default/-/wpcampus-wc-default-0.0.1.tgz#446daec8c6fe4b8d3185dbc02f80d323078628f4"
   integrity sha512-VYizejdAkyVEEV5n0hkleZF/sbC7QnAlzb9+cunn01g8o1uBKTMKCaP0yxVhJMgrM5Y9swj3rdZNZuwp/fJTyA==
 
+"@wpcampus/wpcampus-wc-footer@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@wpcampus/wpcampus-wc-footer/-/wpcampus-wc-footer-0.0.1.tgz#0a11cecdd520e3ebf744e083d8833d49a55f48cc"
+  integrity sha512-7IS4zEsUMqUdwDOyAf4DNlS2dMMha/ctEPhlOccuD7VsKINacbdCzBoDXeF/rf2o2KfQEz1PtzFudU1XVeC7sg==
+  dependencies:
+    "@wpcampus/wpcampus-wc-default" "^0.0.1"
+
 acorn-jsx@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.2.0.tgz#4c66069173d6fdd68ed85239fc256226182b2ebe"
