@@ -8,7 +8,8 @@
 		"url": "git+https://github.com/wpcampus/wpcampus-web-components.git"
 	},
 	"keywords": [
-		"wpcampus"
+		"wpcampus",
+		"web components"
 	],
 	"author": "WPCampus",
 	"contributors": [
@@ -23,6 +24,7 @@
 		"lint": "eslint *.js components/**/*.js *.json --fix"
 	},
 	"dependencies": {
+		"@wpcampus/wpcampus-wc-conduct": "^0.0.1",
 		"@wpcampus/wpcampus-wc-default": "^0.0.1",
 		"handlebars": "^4.5.3"
 	},

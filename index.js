@@ -1,5 +1,5 @@
 require("./components/blog");
-require("./components/conduct");
+require("@wpcampus/wpcampus-wc-conduct");
 require("./components/footer");
 require("./components/library");
 require("./components/notifications");
