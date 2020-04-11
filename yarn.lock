@@ -28,12 +28,12 @@
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
-"@wpcampus/wpcampus-wc-blog@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@wpcampus/wpcampus-wc-blog/-/wpcampus-wc-blog-0.0.2.tgz#cb74b34939dbff53ab665a3a6b0a83576edc0be9"
-  integrity sha512-6owgjhrmGPJxNQ9a1Ikv5nSJt0ovcSN93kLJtltaQUQnY/k7TG6aRSYx4UFaTbGxh/8yG6fbxk0VZ8mKhsE/kw==
+"@wpcampus/wpcampus-wc-blog@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@wpcampus/wpcampus-wc-blog/-/wpcampus-wc-blog-0.0.3.tgz#2f01c895c314610a1ca179b0f7d54d9c148731ec"
+  integrity sha512-s5h0s+WDwF85dLN76K/6slbY3vT4Jmp0Z9yYVbQ+W+jwQ05fgcNkdVysaK9vtbS9zPTyiF9f0BDmHpfJA3NrBg==
   dependencies:
-    "@wpcampus/wpcampus-wc-default" "^0.0.1"
+    "@wpcampus/wpcampus-wc-default" "^0.0.2"
 
 "@wpcampus/wpcampus-wc-conduct@^0.0.2":
   version "0.0.2"
@@ -46,6 +46,11 @@
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@wpcampus/wpcampus-wc-default/-/wpcampus-wc-default-0.0.1.tgz#446daec8c6fe4b8d3185dbc02f80d323078628f4"
   integrity sha512-VYizejdAkyVEEV5n0hkleZF/sbC7QnAlzb9+cunn01g8o1uBKTMKCaP0yxVhJMgrM5Y9swj3rdZNZuwp/fJTyA==
+
+"@wpcampus/wpcampus-wc-default@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@wpcampus/wpcampus-wc-default/-/wpcampus-wc-default-0.0.2.tgz#c0eba0afbe52d1fe0afce071790ac70fb55a563c"
+  integrity sha512-e5ggFtbmpzVjGOAxmCRiaUaqQFgeL1g3BelGQjwEFJ5HSoPchliy8hUYjDCAItR5JCjuK9NHC1XaixdshgMzdw==
 
 "@wpcampus/wpcampus-wc-footer@^0.0.1":
   version "0.0.1"
