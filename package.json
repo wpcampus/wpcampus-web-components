@@ -29,8 +29,7 @@
 		"@wpcampus/wpcampus-wc-default": "^0.0.1",
 		"@wpcampus/wpcampus-wc-footer": "^0.0.1",
 		"@wpcampus/wpcampus-wc-library": "^0.0.1",
-		"@wpcampus/wpcampus-wc-notifications": "^0.0.3",
-		"handlebars": "^4.5.3"
+		"@wpcampus/wpcampus-wc-notifications": "^0.0.3"
 	},
 	"devDependencies": {
 		"eslint": "^6.8.0",
