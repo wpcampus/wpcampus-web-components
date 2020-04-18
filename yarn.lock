@@ -59,13 +59,6 @@
   dependencies:
     "@wpcampus/wpcampus-wc-default" "^0.0.1"
 
-"@wpcampus/wpcampus-wc-library@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@wpcampus/wpcampus-wc-library/-/wpcampus-wc-library-0.0.1.tgz#80ff3ab99eccfd696c754bf95fadb506922bfef2"
-  integrity sha512-JnocmHSpDT6jCRqTJEo4j/k89azksTVJ2TnoW2zmnMZ3yrom2h94Wtn+gGP5PHzTsn85f/EabG+nxfNhS1BRHQ==
-  dependencies:
-    "@wpcampus/wpcampus-wc-default" "^0.0.1"
-
 "@wpcampus/wpcampus-wc-notifications@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@wpcampus/wpcampus-wc-notifications/-/wpcampus-wc-notifications-0.0.3.tgz#c1ebd71d3464a9a7b584bac2d09890df24eb3c1e"
