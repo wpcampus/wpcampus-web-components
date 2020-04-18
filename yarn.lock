@@ -28,10 +28,10 @@
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
-"@wpcampus/wpcampus-wc-blog@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@wpcampus/wpcampus-wc-blog/-/wpcampus-wc-blog-0.0.4.tgz#0f5d708081e18d6205ec6a49930d9d20d664b7ab"
-  integrity sha512-pXm0pPVjnpnWIxrjLCKSkUamPqyr3QHGBWpubbghKN9evDjZX6hQxO2uEItwhTgWluEcvsL5OkWjc6cNkpAylQ==
+"@wpcampus/wpcampus-wc-blog@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@wpcampus/wpcampus-wc-blog/-/wpcampus-wc-blog-0.0.5.tgz#98cc67a7767676eb431e86456a9624330e45028d"
+  integrity sha512-gS5ogjbG4TwpAxNTXft//K7n1iyrjV6uK3g3OFIl4MF9WPkry6xQloqWvO29tWj/SfkJ5kASWBptSYoaDspsPQ==
   dependencies:
     "@wpcampus/wpcampus-wc-default" "^0.0.4"
 
