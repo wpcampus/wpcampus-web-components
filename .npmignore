@@ -1,4 +1,5 @@
 .githooks
+.editorconfig
 .eslintrc.json
 .gitignore
 .nvmrc
