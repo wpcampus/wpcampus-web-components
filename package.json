@@ -25,7 +25,7 @@
 	},
 	"dependencies": {
 		"@wpcampus/wpcampus-wc-blog": "^0.1.1",
-		"@wpcampus/wpcampus-wc-conduct": "^0.0.2",
+		"@wpcampus/wpcampus-wc-conduct": "^0.1.0",
 		"@wpcampus/wpcampus-wc-footer": "^0.0.3",
 		"@wpcampus/wpcampus-wc-notifications": "^0.0.3"
 	},
